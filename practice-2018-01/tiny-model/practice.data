@@ -1,0 +1,11 @@
+classes = 2
+
+train = /mnt/datasets/Boll_YOLO/convert/images/train.txt
+
+valid = /mnt/datasets/Boll_YOLO/convert/images/test.txt
+
+names = /home/kawamata/darknet/data/practice.names
+
+backup = /mnt/datasets/weight_result
+
+top = 2
