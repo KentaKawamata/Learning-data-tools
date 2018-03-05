@@ -3,10 +3,10 @@ import cv2
 
 # Current directory
 #current_dir = os.path.dirname(os.path.abspath(__file__))
-current_dir = '/home/kawamata/Ganken_image/2018_03_03/'
+current_dir = '/Your/directory/path/'
 
 # Directory where the data will reside, relative to 'darknet.exe'
-path_data = '/home/kawamata/Ganken_image/2018_03_03/'
+path_data = '/Your/directory/path/'
 
 for pathAndFilename in glob.iglob(os.path.join(current_dir, "*.png")):  
     title, ext = os.path.splitext(os.path.basename(pathAndFilename))
