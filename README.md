@@ -1,4 +1,4 @@
-#使用環境
+# 使用環境
 
 ||
 |:--|
@@ -11,22 +11,25 @@
 ## Rename.py
 
 各画像データの名称変更.
-
+`python Rename.py`
 
 ## extract.py
 
 特定のディレクトリから画像をランダムで抽出.
-
+`python extract.py`
 
 ## image_generator.py
 
 KerasのImageDataGeneratorを用いて学習データを水増し.
+`python image_generator.py`
 
 ## process.py
 
 学習に使用する全画像データのパスをテキストファイルに記録.
 darknetに画像パスを指定する際に使用.
+`python process.py`
 
 ## reformat.py
 
 画像の拡張子をdarknetに対応
+`python reformat.py`
