@@ -1,16 +1,32 @@
-# darknet-config
+#使用環境
 
-darknet yolov1による学習を行う際のconfigファイル
+||
+|:--|
+|Ubuntu14.04 LTS or 16.04 LTS|
+|anaconda3.4 or 3.5|
+|Python 3.X|
+|OpenCV 3.X|
+|Keras 2.X|
 
-- practice-~~
+## Rename.py
 
-~~日に作成したcfgファイル
+各画像データの名称変更.
 
-- convert
 
-教師データのパスを示したファイル作成.
-同時に,教師データの拡張子をjpgに変換.
+## extract.py
 
-# 2018/02
+特定のディレクトリから画像をランダムで抽出.
 
-学習率lrを0.0005から0.0001に変更
+
+## image_generator.py
+
+KerasのImageDataGeneratorを用いて学習データを水増し.
+
+## process.py
+
+学習に使用する全画像データのパスをテキストファイルに記録.
+darknetに画像パスを指定する際に使用.
+
+## reformat.py
+
+画像の拡張子をdarknetに対応
