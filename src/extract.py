@@ -10,12 +10,12 @@ def extract(image_path, label_path, image_tmp, label_tmp, sheets):
     images = random.sample(image_data, sheets)
 
 
-for image in images:
-    image = str(image)
-    label = re.sub(re.compile(".jpg"), ".txt", image)
+    for image in images:
+        image = str(image)
+        label = re.sub(re.compile(".jpg"), ".txt", image)
 
-    shutil.copy(image_path + image, image_tmp)
-    shutil.copy(label_path + label, label_tmp)
+        shutil.copy(image_path + image, image_tmp)
+        shutil.copy(label_path + label, label_tmp)
 
 if __name__ == '__main__':
 
