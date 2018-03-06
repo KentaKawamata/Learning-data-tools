@@ -3,12 +3,19 @@ import subprocess
 
 def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 
-    
+    files = os.listdir(image_path)
+    count = 0
+    for file in files:
+        if re.search('.jpg', file):
+            count = count +1
+
+    if count < sheets:
+        print("画像データ不足")
+        return False
 
     #ディレクトリ中からランダムにsheets枚取り出し
     image_data = os.listdir(image_path)
     images = random.sample(image_data, sheets)
-
 
     for image in images:
         image = str(image)
