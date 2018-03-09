@@ -1,32 +1,39 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import numpy as np
 import glob, os, sys, re
 import cv2
 
-def lumine(file_path):
+file_path = os.path.dirname(os.path.abspath(__file__))
 
-    print("!!!!!!!!!!")
-    for pathAndFilename in glob.iglob(os.path.join(file_path, "*.jpg")):
+for pathAndFilename in glob.iglob(os.path.join(file_path, "*")):
+    image, ext = os.path.splitext(os.path.basename(pathAndFilename))
 
-        image, ext = os.path.splitext(os.path.basename(pathAndFilename))
+    print(ext)
+    if str(ext) == ".png":
+        src = cv2.imread(image + '.png')
+    elif str(ext) == ".jpg":
         src = cv2.imread(image + '.jpg')
+    else:
+        src = None
+    print(src)
 
-        #標準偏差32,平均120に変更
-        if src is not None:
-            img = (src-np.mean(src))/np.std(src)*32+120
-            cv2.imwrite(image + '_A' + '.jpg', img)
+    if src is not None:
+        img = (src-np.mean(src))/np.std(src)*32+120 #標準偏差32,平均120に変更
+        cv2.imwrite(image + '_V.png', img)
 
-        #標準偏差16,平均120に変更
-        if src is not None:
-            img = (src-np.mean(src))/np.std(src)*16+120
-            cv2.imwrite(image + '_B' + '.jpg', img)
+    if src is not None:
+        img = (src-np.mean(src))/np.std(src)*16+120 #標準偏差16,平均120に変更
+        cv2.imwrite(image + '_X.jpg', img)
 
-if __name__ == '__main__':
-
-    #現在スクリプトが存在するディレクトリのパスを取り出し
-    #file_path = os.path.dirname(os.path.abspath(__file__))
-    file_path = "//"
-
-    lumine(file_path)
+    if src is not None:
+        average_square = (10, 10)
+        noize = cv2.blur(src, average_square)
+        cv2.imwrite(image + '_G.jpg', img)
+        
+    if src is not None:
+        row, col, ch = src.shape
+        mean = 0
+        sigma = 15
+        gauss = np.random.normal(mean, sigma, (row, col, ch))
+        gauss = gauss.reshape(row, col, ch)
+        gauss_img = src + gauss
+        cv2.imwrite(image + '_Ge.jpg', gauss_img)
