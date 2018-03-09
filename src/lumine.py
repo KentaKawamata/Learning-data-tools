@@ -18,7 +18,7 @@ for pathAndFilename in glob.iglob(os.path.join(file_path, "*")):
 
     if src is not None:
         img = (src-np.mean(src))/np.std(src)*32+120 #標準偏差32,平均120に変更
-        cv2.imwrite(image + '_V.png', img)
+        cv2.imwrite(image + '_V.jpg', img)
 
     if src is not None:
         img = (src-np.mean(src))/np.std(src)*16+120 #標準偏差16,平均120に変更
