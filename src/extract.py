@@ -4,6 +4,7 @@ import glob, os, shutil, random, re
 
 def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 
+    image_data = []
     #ディレクトリ中からランダムにsheets枚取り出し
     for path in glob.glob(os.path.join(image_path, "*.jpg")):  
 
