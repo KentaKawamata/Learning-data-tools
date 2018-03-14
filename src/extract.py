@@ -1,20 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import glob, os, shutil, random, re
-import subprocess
 
 def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 
-    files = os.listdir(image_path)
-    count = 0
-    for file in files:
-        if re.search('.jpg', file):
-            count = count +1
-
-    if count < sheets:
-        print("画像データ不足")
-        return False
-
     #ディレクトリ中からランダムにsheets枚取り出し
-    image_data = os.listdir(image_path)
+    for path in glob.glob(os.path.join(image_path, "*.jpg")):  
+
+        image, ext = os.path.splitext(os.path.basename(path))
+        image_data.append(str(image + ext))
+    
     images = random.sample(image_data, sheets)
 
     for image in images:
@@ -35,6 +30,6 @@ if __name__ == '__main__':
     label_tmp = "/label/data/temp/directory/path/"
 
     #取り出す枚数
-    random = 100
+    number = 100
 
-    extract(image_path, label_path, image_tmp, label_tmp, random)
+    extract(image_path, label_path, image_tmp, label_tmp, number)
