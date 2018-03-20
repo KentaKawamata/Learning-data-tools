@@ -24,10 +24,9 @@ def reverse():
         #元画像のラベルファイルを取り出し
         labelfile = str(label_dir + image + '.txt')
         newlabel = str(label_dir + image + '_in.txt')
-        shutil.copyfile(labelfile, label_dir + image + "_in.txt")
 
         num, x_point, y_point, width, height = [], [], [], [], []
-        with open(newlabel, 'r+') as fp:
+        with open(labelfile, 'r') as fp:
             for line in fp: 
                 data = re.split(" ", line)
 
@@ -37,12 +36,12 @@ def reverse():
                 width.append(str(data[3]))
                 height.append(str(data[4]))
 
-            x_beyond = []
+        x_beyond = []
+        for x in x_point:
+            x = abs(x*640-640)/640
+            x_beyond.append(str(round(x, 7)))
 
-            for x in x_point:
-                x = abs(x*640-640)/640
-                x_beyond.append(str(round(x, 7)))
-
+        with open(newlabel, 'w') as fp:
             for (n, x, y, w, h) in zip(num, x_beyond, y_point, width, height):
                 fp.write(n + ' ' + x + ' ' + y + ' ' + w + ' ' + h)
     
