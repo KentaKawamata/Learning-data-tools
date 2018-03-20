@@ -1,13 +1,23 @@
 import glob, os, shutil, random, re
 import cv2
+import xml.etree.ElementTree as et
 
-def reverse():
+def file_path():
+    
+    tree = et.ElementTree(file='path.xml')
+    root = tree.getroot()
 
-    image_dir = "/home/image/testimage/"
-    label_dir = "/home/image/testlabel/"
+    image_path = root.findtext("image_path")
+    label_path = root.findtext("label_path")
+
+    return image_path, label_path
+
+def reverse(image_dir, label_dir):
 
     for pathAndFile in glob.iglob(os.path.join(image_dir, "*")):
         image, ext = os.path.splitext(os.path.basename(pathAndFile))
+
+        print(str(image + ext))
 
         if str(ext) == ".png":
             src = cv2.imread(image_dir + image + '.png')
@@ -47,4 +57,6 @@ def reverse():
     
 if __name__ == "__main__":
 
-    reverse()
+    paths = file_path()
+
+    reverse(paths[0], paths[1])
