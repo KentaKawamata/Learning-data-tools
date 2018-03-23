@@ -2,7 +2,7 @@ import glob, os
 import cv2
 import path as PATH
 
-def reformat(image_path):
+def reformat(image_path, label_path):
 
     PathAndFile = glob.iglob(os.path.join(image_path, "*.png"))
 
@@ -18,8 +18,10 @@ def reformat(image_path):
         newname = str(today) + '_' + str("{0:04d}".format(i))
         cv2.imwrite(image_path + newname + '.jpg', IMG)
 
+        shutil.copyfile(label_path + title + '.txt', label_path + newname + ".txt")
+
 if __name__ == '__main__':
 
     paths = PATH.file_path()
 
-    reformat(paths[0])
+    reformat(paths[0], paths[1])
