@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import glob, os, shutil, random, re
+import path as PATH
 
 def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 
     image_data = []
     #ディレクトリ中からランダムにsheets枚取り出し
-    for path in glob.glob(os.path.join(image_path, "*.jpg")):  
+    for PF in glob.glob(os.path.join(image_path, "*.jpg")):  
 
-        image, ext = os.path.splitext(os.path.basename(path))
+        image, ext = os.path.splitext(os.path.basename(PF))
         image_data.append(str(image + ext))
     
     images = random.sample(image_data, sheets)
@@ -22,9 +23,7 @@ def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 
 if __name__ == '__main__':
 
-    #画像とラベルのパス
-    image_path = "/image/data/directory/path/"
-    label_path = "/label/data/directory/path/"
+    paths = PATH.file_path()
 
     #画像トラベルのコピー先パス
     image_tmp = "/image/data/temp/directory/path/"
@@ -33,4 +32,4 @@ if __name__ == '__main__':
     #取り出す枚数
     number = 100
 
-    extract(image_path, label_path, image_tmp, label_tmp, number)
+    extract(paths[0], paths[1], image_tmp, label_tmp, number)

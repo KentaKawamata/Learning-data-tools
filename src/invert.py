@@ -1,16 +1,6 @@
 import glob, os, shutil, random, re
 import cv2
-import xml.etree.ElementTree as et
-
-def file_path():
-    
-    tree = et.ElementTree(file='path.xml')
-    root = tree.getroot()
-
-    image_path = root.findtext("image_path")
-    label_path = root.findtext("label_path")
-
-    return image_path, label_path
+import path as PATH
 
 def reverse(image_dir, label_dir):
 
@@ -57,6 +47,6 @@ def reverse(image_dir, label_dir):
     
 if __name__ == "__main__":
 
-    paths = file_path()
+    paths = PATH.file_path()
 
     reverse(paths[0], paths[1])

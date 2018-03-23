@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import path as PATH
 import glob, os, shutil, random, re
 import subprocess
 
@@ -30,8 +30,6 @@ def add_label(image_path, label_path):
 
 if __name__ == '__main__':
 
-    #画像保存先とラベル保存先指定
-    image_path = "//images/"
-    label_path = "//labels/"
+    paths = PATH.file_path()
 
-    add_label(image_path, label_path)
+    add_label(paths[0], paths[1])

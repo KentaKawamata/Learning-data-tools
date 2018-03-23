@@ -1,23 +1,19 @@
 import glob, os
 import cv2
+import path as PATH
 
-def reformat():
+def reformat(image_path):
 
-    # 画像データパス
-    #current_dir = os.path.dirname(os.path.abspath(__file__))
-    current_dir = '/Your/directory/path/'
-
-    # 出力先ディレクトリ
-    path_data = '/Your/directory/path/'
-
-    for pathAndFilename in glob.iglob(os.path.join(current_dir, "*.png")):  
+    for PF in glob.iglob(os.path.join(image_path, "*.png")):  
 
         #画像データの名前のみ取り込み
-        title, ext = os.path.splitext(os.path.basename(pathAndFilename))
+        title, ext = os.path.splitext(os.path.basename(PF))
 
         IMG = cv2.imread(title + '.png')
-        cv2.imwrite(os.path.join(path_data, title + '.jpg'), IMG)
+        cv2.imwrite(os.path.join(image_path, title + '.jpg'), IMG)
 
 if __name__ == '__main__':
 
-    reformat()
+    paths = PATH.file_path()
+
+    reformat(paths[0])
