@@ -12,9 +12,9 @@ def reverse(image_dir, label_dir):
         print(str(ext))
 
         if str(ext) == ".png":
-            src = cv2.imread(image + '.png')
+            src = cv2.imread(os.path.join(image_dir, image) + '.png')
         elif str(ext) == ".jpg":
-            src = cv2.imread(image + '.jpg')
+            src = cv2.imread(os.path.join(image_dir, image) + '.jpg')
         else:
             src = None
   
@@ -22,7 +22,7 @@ def reverse(image_dir, label_dir):
         #cv2.flipで画像を左右反転
         if src is not None:
             img = cv2.flip(src, 1)
-            cv2.imwrite(image_dir + image + '_in' + '.jpg', img)
+            cv2.imwrite(os.path.join(image_dir, image+'_in'+'.jpg'), img)
 
         #元画像のラベルファイルを取り出し
         labelfile = str(label_dir + image + '.txt')

@@ -20,8 +20,8 @@ def add_label(image_path, label_path):
             #水増し前の大本の画像のラベル取り出し
             image_base = image.replace('_X', '') 
             image_base = image_base.replace('_V', '')
-            image_base = image_base.replace('_G', '')
             image_base = image_base.replace('_Ge', '')
+            image_base = image_base.replace('_G', '')
             print(image_base)
             label_base, ext = os.path.splitext(os.path.basename(label_path + image_base + ".txt"))
             #print(label_base + "           label_base")
