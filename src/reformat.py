@@ -15,9 +15,9 @@ def reformat(image_path, label_path):
         #画像データの名前のみ取り込み
         title, ext = os.path.splitext(os.path.basename(PF))
 
-        IMG = cv2.imread(title + '.png')
-        newname = str(today) + '_' + str("{0:04d}".format(i))
-        cv2.imwrite(image_path + newname + '.jpg', IMG)
+        IMG = cv2.imread(PF, 1)
+        newname = str(today)+'_'+str("{0:04d}".format(i))
+        cv2.imwrite(os.path.join(image_path, newname+'.jpg'), IMG)
 
         shutil.copyfile(label_path + title + '.txt', label_path + newname + ".txt")
 

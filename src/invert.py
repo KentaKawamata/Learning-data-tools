@@ -4,18 +4,21 @@ import path as PATH
 
 def reverse(image_dir, label_dir):
 
-    for pathAndFile in glob.iglob(os.path.join(image_dir, "*")):
-        image, ext = os.path.splitext(os.path.basename(pathAndFile))
+    print(image_dir)
 
-        print(str(image + ext))
+    for PF in glob.iglob(os.path.join(image_dir, "*")):
+        image, ext = os.path.splitext(os.path.basename(PF))
+
+        print(str(ext))
 
         if str(ext) == ".png":
-            src = cv2.imread(image_dir + image + '.png')
+            src = cv2.imread(image + '.png')
         elif str(ext) == ".jpg":
-            src = cv2.imread(image_dir + image + '.jpg')
+            src = cv2.imread(image + '.jpg')
         else:
             src = None
   
+        print(src)
         #cv2.flipで画像を左右反転
         if src is not None:
             img = cv2.flip(src, 1)
