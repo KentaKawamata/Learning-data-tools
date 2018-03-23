@@ -23,13 +23,7 @@ def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 
 if __name__ == '__main__':
 
-    paths = PATH.file_path()
-
-    #画像トラベルのコピー先パス
-    image_tmp = "/image/data/temp/directory/path/"
-    label_tmp = "/label/data/temp/directory/path/"
-
     #取り出す枚数
     number = 100
-
-    extract(paths[0], paths[1], image_tmp, label_tmp, number)
+    paths = PATH.file_path()
+    extract(paths[0], paths[1], paths[2], paths[3], number)
