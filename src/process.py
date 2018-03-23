@@ -1,5 +1,4 @@
 import glob, os
-import cv2
 import path as PATH
 
 def process(image_path):
@@ -17,12 +16,9 @@ def process(image_path):
     # Populate train.txt and test.txt
     counter = 1  
     index_test = round(100 / percentage_test)  
-    for PF in glob.iglob(os.path.join(image_path, "*.png")):  
+    for PF in glob.iglob(os.path.join(image_path, "*.jpg")):  
 
         title, ext = os.path.splitext(os.path.basename(PF))
-
-        IMG = cv2.imread(title + '.png')
-        cv2.imwrite(title + '.jpg', IMG)
 
         if counter == index_test:
             counter = 1
