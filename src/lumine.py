@@ -6,6 +6,7 @@ from tqdm import tqdm
 
 def mizumashi(Ipath):
 
+    print("------start multiply images------")
     images = glob.iglob(os.path.join(Ipath, "*"))
     num = 0
 
@@ -50,6 +51,8 @@ def mizumashi(Ipath):
             cv2.imwrite(os.path.join(Ipath, image+'_G.jpg'), gauss_img)
 
         pbar.update(1)
+
+    print("------end multiply images------")
 
 if __name__ == "__main__":
 
