@@ -2,20 +2,28 @@ import numpy as np
 import glob, os, sys, re
 import cv2
 import path as PATH
+from tqdm import tqdm
 
 def mizumashi(Ipath):
 
-    for PF in glob.iglob(os.path.join(Ipath, "*")):
+    images = glob.iglob(os.path.join(Ipath, "*"))
+    num = 0
+
+    for i, P in enumerate(images):
+        num = num + 1
+
+    pbar = tqdm(total=int(num))
+    images = glob.iglob(os.path.join(Ipath, "*"))
+
+    for i, PF in enumerate(tqdm(images)):
         image, ext = os.path.splitext(os.path.basename(PF))
 
-        print(ext)
         if str(ext) == ".png":
             src = cv2.imread(os.path.join(Ipath, image+ext), 1)
         elif str(ext) == ".jpg":
             src = cv2.imread(os.path.join(Ipath, image+ext), 1)
         else:
             src = None
-        print(src)
 
         if src is not None:
             #標準偏差32,平均120に変更
@@ -40,6 +48,8 @@ def mizumashi(Ipath):
             gauss = gauss.reshape(row, col, ch)
             gauss_img = src + gauss
             cv2.imwrite(os.path.join(Ipath, image+'_G.jpg'), gauss_img)
+
+        pbar.update(1)
 
 if __name__ == "__main__":
 
