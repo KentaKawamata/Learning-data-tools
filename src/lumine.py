@@ -4,58 +4,76 @@ import cv2
 import path as PATH
 from tqdm import tqdm
 
-def mizumashi(Ipath):
+class Lumine():
+    def __init__(self, Ipath):
+        self.num = 0
+        self.src = None
+        self.image_path = Ipath
+        self.images = []
+        self.pbar = None
+        self.img = None
+        self.image_name = None
+        self.img = None
 
-    print("------start multiply images------")
-    images = glob.iglob(os.path.join(Ipath, "*"))
-    num = 0
+    def mashi(self):
 
-    for i, P in enumerate(images):
-        num = num + 1
+        print("------start multiply images------")
+        self.images = glob.iglob(os.path.join(self.image_path, "*"))
+        print(images)
+        self.count(files=self.images)
 
-    pbar = tqdm(total=int(num))
-    images = glob.iglob(os.path.join(Ipath, "*"))
+        for i, PF in enumerate(tqdm(self.images)):
+            image, ext = os.path.splitext(os.path.basename(PF))
 
-    for i, PF in enumerate(tqdm(images)):
-        image, ext = os.path.splitext(os.path.basename(PF))
+            self.image_name = image
+            self.search_format(ext)
 
-        if str(ext) == ".png":
-            src = cv2.imread(os.path.join(Ipath, image+ext), 1)
-        elif str(ext) == ".jpg":
-            src = cv2.imread(os.path.join(Ipath, image+ext), 1)
+            if self.src is not None:
+                self.normalization(32, 120, '_N32')       
+                self.normalization(16, 120, '_N16')       
+                self.median()
+                self.gauss()
+
+            self.pbar.update(1)
+
+        print("------end multiply images------")
+
+    def search_format(self, f):
+        if str(f) == ".png" or str(f) == ".jpg":
+            self.src = cv2.imread(os.path.join(self.image_path, self.image_name+f), 1)
         else:
-            src = None
+            self.src = None
 
-        if src is not None:
-            #標準偏差32,平均120に変更
-            img = (src-np.mean(src))/np.std(src)*32+120
-            cv2.imwrite(os.path.join(Ipath, image+'_V.jpg'), img)
+    def count(self, files):
+        for i, P in enumerate(files):
+            self.num = self.num + 1
+        self.pbar = tqdm(total=int(self.num))
 
-        if src is not None:
-            #標準偏差16,平均120に変更
-            img = (src-np.mean(src))/np.std(src)*16+120
-            cv2.imwrite(os.path.join(Ipath, image+'_X.jpg'), img)
+    def write_image(self, signal):
+        cv2.imwrite(os.path.join(self.image_path, self.image_name + signal + '.jpg'), self.img)
 
-        if src is not None:
-            average_square = (10, 10)
-            img = cv2.blur(src, average_square)
-            cv2.imwrite(os.path.join(Ipath, image+'_Ge.jpg'), img)
-        
-        if src is not None:
-            row, col, ch = src.shape
-            mean = 0
-            sigma = 15
-            gauss = np.random.normal(mean, sigma, (row, col, ch))
-            gauss = gauss.reshape(row, col, ch)
-            gauss_img = src + gauss
-            cv2.imwrite(os.path.join(Ipath, image+'_G.jpg'), gauss_img)
+    def normalization(self, hensa, avrage, signal):
+        self.img = (self.src-np.mean(self.src))/np.std(self.src)*hensa+avrage
+        self.write_image(signal)
 
-        pbar.update(1)
+    def median(self):
+        average_square = (10, 10)
+        self.img = cv2.blur(self.src, average_square)
+        self.write_image('_M')
 
-    print("------end multiply images------")
+    def gauss(self):
+        row, col, ch = self.src.shape
+        mean = 0
+        sigma = 15
+        gauss = np.random.normal(mean, sigma, (row, col, ch))
+        gauss = gauss.reshape(row, col, ch)
+        self.img = self.src + gauss
+        self.write_image('_G')
 
 if __name__ == "__main__":
 
     paths = PATH.file_path()
 
-    mizumashi(paths[0])
+    mizumashi = Lumine(paths[0])
+    print("!!!!!!!!!")
+    mizumashi.mashi()
