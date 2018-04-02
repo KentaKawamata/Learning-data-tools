@@ -11,7 +11,8 @@ def main():
 
     RF.reformat(paths[0], paths[1])
     IN.reverse(paths[0], paths[1])
-    LU.mizumashi(paths[0])
+    mizumashi = LU.Lumine(paths[0])
+    mizumashi.mashi()
     LA.add_label(paths[0], paths[1])
     process.process(paths[0])
 
