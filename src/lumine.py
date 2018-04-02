@@ -28,7 +28,7 @@ class Lumine():
         for i, PF in enumerate(tqdm(self.images)):
             self.image_name, ext = os.path.splitext(os.path.basename(PF))
 
-            self.search_format(ext)
+            self.read_image(ext)
 
             if self.src is not None:
                 self.normalization(32, 120, '_N32')       
@@ -40,7 +40,7 @@ class Lumine():
 
         print("\n------end multiply images------")
 
-    def search_format(self, f):
+    def read_image(self, f):
         if str(f) == ".png" or str(f) == ".jpg":
             self.src = cv2.imread(os.path.join(self.image_path, self.image_name+f), 1)
         else:

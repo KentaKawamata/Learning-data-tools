@@ -13,7 +13,6 @@ def main():
     IN.reverse(paths[0], paths[1])
     mizumashi = LU.Lumine(paths[0])
     mizumashi.mashi()
-    LA.add_label(paths[0], paths[1])
     process.process(paths[0])
 
 if __name__ == "__main__":
