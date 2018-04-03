@@ -2,27 +2,38 @@ import glob, os, shutil
 import cv2
 import datetime
 import path as PATH
+from lumine import Lumine
 
-def reformat(image_path, label_path):
+class Reformat(Lumine):
+    def __init__(self, image_path, label_path):
+        super().__init__(image_path, label_path)
+        self.new_image_name = None
+        self.today = datetime.date.today()
 
-    PathAndFile = glob.iglob(os.path.join(image_path, "*.png"))
+    def reformat(self):
+        #self.today = self.today - datetime.timedelta(days=1)
+        PF = glob.iglob(os.path.join(self.image_path, "*"))
 
-    for i, PF in enumerate(PathAndFile, 1):  
+        i=0
+        for img_origin in PF:  
+            i+=1
+            self.image_name, ext = os.path.splitext(os.path.basename(img_origin))
+            self.read_image(ext)
+            if self.src is not None:
+                self.rewrite(i)
+                self.add_label(self.new_image_name)
+            else:
+                i-=1
 
-        today = datetime.date.today()
-        #today = today - datetime.timedelta(days=1)
 
-        #画像データの名前のみ取り込み
-        title, ext = os.path.splitext(os.path.basename(PF))
-
-        IMG = cv2.imread(PF, 1)
-        newname = str(today)+'_'+str("{0:04d}".format(i))
-        cv2.imwrite(os.path.join(image_path, newname+'.jpg'), IMG)
-
-        shutil.copyfile(label_path + title + '.txt', label_path + newname + ".txt")
-
+    def rewrite(self, i):
+        self.new_image_name = str(self.today)+'_'+str("{0:04d}".format(i))
+        cv2.imwrite(os.path.join(self.image_path, self.new_image_name+'.jpg'), self.src)
+            
 if __name__ == '__main__':
 
     paths = PATH.file_path()
 
-    reformat(paths[0], paths[1])
+    re_name_format = Reformat(paths[0], paths[1])
+
+    re_name_format.reformat()
