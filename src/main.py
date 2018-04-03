@@ -9,8 +9,10 @@ def main():
 
     paths = PATH.file_path()
 
-    RF.reformat(paths[0], paths[1])
-    IN.reverse(paths[0], paths[1])
+    rename = RF.Reformat(paths[0], paths[1])
+    rename.reformat()
+    hanten = IN.Reverse(paths[0], paths[1])
+    hanten.reverse()
     mizumashi = LU.Lumine(paths[0])
     mizumashi.mashi()
     process.process(paths[0])
