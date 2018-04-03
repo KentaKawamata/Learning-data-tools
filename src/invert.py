@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import glob, os, shutil, random, re
 import cv2
 import path as PATH

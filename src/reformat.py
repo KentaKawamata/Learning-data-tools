@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import glob, os, shutil
 import cv2
 import datetime

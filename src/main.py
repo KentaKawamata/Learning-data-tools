@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import reformat as RF
 import invert as IN
 import lumine as LU
