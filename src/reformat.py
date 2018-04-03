@@ -21,15 +21,19 @@ class Reformat(Lumine):
             self.read_image(ext)
             if self.src is not None:
                 self.rewrite(i)
-                self.add_label(self.new_image_name)
             else:
                 i-=1
 
 
     def rewrite(self, i):
         self.new_image_name = str(self.today)+'_'+str("{0:04d}".format(i))
-        cv2.imwrite(os.path.join(self.image_path, self.new_image_name+'.jpg'), self.src)
-            
+        if self.new_image_name != self.image_name:
+            cv2.imwrite(os.path.join(self.image_path, self.new_image_name+'.jpg'), self.src)
+            self.add_label(self.new_image_name)
+        else:
+            print("A same name file is existence in" + str(self.image_path))
+            pass 
+    
 if __name__ == '__main__':
 
     paths = PATH.file_path()
