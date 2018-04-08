@@ -18,6 +18,9 @@ class Lumine():
         self.image_name = None
         self.img = None
 
+    def __del__(self):
+        
+
     def mashi(self):
 
         print("------start multiply images------")
