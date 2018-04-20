@@ -31,7 +31,7 @@ class Lumine():
             self.read_image(ext)
 
             if self.src is not None:
-                #############
+                self.RGB()
 
             self.pbar.update(1)
 
@@ -46,14 +46,19 @@ class Lumine():
     def RGB(self):
         b,g,r = cv2.split(self.src)
        
+        b = np.float64(b)
+        g = np.float64(g)
+        r = np.float64(r)
+
         img_blue_c3 = b*0.4
         img_green_c3 = g
         img_red_c3 = r*0.8
 
-        img_c3 = cv2.merge((img_blue_c3, img_green_c3, img_red_c3))
+        self.img = cv2.merge((img_blue_c3, img_green_c3, img_red_c3))
 
-        cv2.imwrite(self.image_name + "_RGB.jpg", img_c3)
-        self.add_label(self.image_name + "_RGB.jpg")
+        self.write_image('_RGB')
+        #cv2.imwrite(self.image_name + "_RGB.jpg", img_c3)
+        #self.add_label(self.image_name + "_RGB.jpg")
 
 
     def count(self, files):

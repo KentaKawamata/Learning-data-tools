@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <location>
-    <image_path>/home/kawamata/reinoare/image/</image_path>
-    <label_path>/home/kawamata/reinoare/label/</label_path>
+    <image_path>/home/kawa/dataset/image/</image_path>
+    <label_path>/home/kawa/dataset/label/</label_path>
     <temp_image>/home/kawamata/Ganken_image/tmp_image/</temp_image>
     <temp_label>/home/kawamata/Ganken_image/tmp_label/</temp_label>
 </location>

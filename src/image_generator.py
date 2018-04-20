@@ -20,14 +20,8 @@ if __name__ == '__main__':
 
     paths = PA.file_path()
 
-    #if not(os.path.exists(output_dir)):
-    #     os.mkdir(output_dir)
-    #images = glob.glob('*.jpg')
     images = glob.iglob(os.path.join(paths[0], "*.jpg"))   
-     
 
-
-    print(images)
     generator = ImageDataGenerator(rotation_range=0, # 90°まで回転
                       width_shift_range=0, # 水平方向に
                       height_shift_range=0, # 垂直方向にランダムでシフト
