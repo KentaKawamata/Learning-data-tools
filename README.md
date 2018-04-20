@@ -7,6 +7,7 @@
 |Python 3.X|
 |OpenCV 3.X|
 |Keras 2.X|
+|tqdm 4.19.9 |
 
 ## Rename.py
 
