@@ -22,7 +22,6 @@ class Reverse(Lumine):
         x = abs(x*640-640)/640
         return str(round(x, 7))
 
-
     def add_label(self, signal):
 
         #元画像のラベルファイルを取り出し
