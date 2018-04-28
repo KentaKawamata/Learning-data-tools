@@ -90,13 +90,13 @@ class FilePath(QWidget):
         dir_path = QFileDialog.getExistingDirectory(self, 'find directory', '/home', QFileDialog.ShowDirsOnly)
 
         if dir_path:
-            self.image_edit.setText(dir_path)
+            self.image_edit.setText(dir_path + "/")
 
     def show_label_path(self, pressed):
         dir_path = QFileDialog.getExistingDirectory(self, 'find directory', '/home', QFileDialog.ShowDirsOnly)
 
         if dir_path:
-            self.label_edit.setText(dir_path)
+            self.label_edit.setText(dir_path + "/")
 
 class MyMainWindow(QMainWindow):
 
