@@ -33,12 +33,18 @@ class Lumine():
             if self.src is not None:
                 self.normalization(32, 120, '_N32')       
                 self.normalization(16, 120, '_N16')       
-                self.median()
-                self.gauss()
+                #self.median()
+                self.gaussian_filter()
+                self.nonlocalmeans_filter()
 
             self.pbar.update(1)
 
         print("\n------end multiply images------")
+
+    def nonlocalmeans_filter(self):
+
+        slef.img = cv2.fastNlMeansDenoisingColored(self.src, None, 10, 10, 7, 21)
+        self.write_image('_non')
 
     def read_image(self, f):
         if str(f) == ".png" or str(f) == ".jpg":
@@ -68,7 +74,7 @@ class Lumine():
         self.img = cv2.blur(self.src, average_square)
         self.write_image('_M')
 
-    def gauss(self):
+    def gaussian_filter(self):
         row, col, ch = self.src.shape
         mean = 0
         sigma = 15

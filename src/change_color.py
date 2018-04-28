@@ -7,7 +7,7 @@ import path as PATH
 from tqdm import tqdm
 from lumine import Lumine
 
-class RGB(Lumine):
+class COLOR(Lumine):
 
     def rgb(self):
 
@@ -22,14 +22,14 @@ class RGB(Lumine):
             self.read_image(ext)
 
             if self.src is not None:
-                self.Blue(0.9, 0.625, 0.8)
-                self.Green(0.625, 0.9, 0.8)
+                self.change_color("bule", 0.9, 0.625, 0.8)
+                self.change_color("green", 0.625, 0.9, 0.8)
 
             self.pbar.update(1)
 
         print("\n------end RGB images------")
 
-    def Blue(self, b_param, g_param, r_param):
+    def change_color(self, color, b_param, g_param, r_param):
         b,g,r = cv2.split(self.src)
        
         b = np.float64(b)
@@ -41,25 +41,20 @@ class RGB(Lumine):
         red = r*r_param
 
         self.img = cv2.merge((blue, green, red))
-        self.write_image('_blue')
+        if color=="blue":
+            self.write_image('_blue')
+        elif color=="green":
+            self.write_image('_green')
+        elif color=="red":
+            self.write_image('_red')
+        else:
+            print("--------Error in change_RGB !!!! Check spell on color !!!!--------")
+            return -1
 
-    def Green(self, b_param, g_param, r_param):
-        b,g,r = cv2.split(self.src)
-       
-        b = np.float64(b)
-        g = np.float64(g)
-        r = np.float64(r)
-
-        blue = b*b_param
-        green = g*g_param
-        red = r*r_param
-
-        self.img = cv2.merge((blue, green, red))
-        self.write_image('_green')
 
 if __name__ == "__main__":
 
     paths = PATH.file_path()
 
-    color = RGB(paths[0], paths[1])
+    color = COLOR(paths[0], paths[1])
     color.rgb()
