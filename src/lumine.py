@@ -31,10 +31,10 @@ class Lumine():
             self.read_image(ext)
 
             if self.src is not None:
-                #self.normalization(32, 120, '_N32')       
-                #self.normalization(16, 120, '_N16')       
-                #self.median()
-                #self.gaussian_filter()
+                self.normalization(32, 120, '_N32')       
+                self.normalization(16, 120, '_N16')       
+                self.median()
+                self.gaussian_filter()
                 self.nonlocalmeans_filter()
 
             self.pbar.update(1)
