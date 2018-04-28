@@ -8,6 +8,8 @@ from tqdm import tqdm
 from lumine import Lumine
 
 class COLOR(Lumine):
+    def __init__(self, image_path, label_path):
+        super().__init__(image_path, label_path)
 
     def rgb(self):
 

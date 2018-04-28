@@ -43,7 +43,7 @@ class Lumine():
 
     def nonlocalmeans_filter(self):
 
-        slef.img = cv2.fastNlMeansDenoisingColored(self.src, None, 10, 10, 7, 21)
+        self.img = cv2.fastNlMeansDenoisingColored(self.src, None, 10, 10, 7, 21)
         self.write_image('_non')
 
     def read_image(self, f):
@@ -83,9 +83,13 @@ class Lumine():
         self.img = self.src + gauss
         self.write_image('_G')
 
-if __name__ == "__main__":
+def main():
 
     paths = PATH.file_path()
 
     mizumashi = Lumine(paths[0], paths[1])
     mizumashi.mashi()
+
+if __name__ == "__main__":
+
+    main()

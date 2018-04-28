@@ -6,6 +6,8 @@ import path as PATH
 from lumine import Lumine
 
 class Reverse(Lumine):
+    def __init__(self, image_path, label_path):
+        super().__init__(image_path, label_path)
 
     def reverse(self):
 
