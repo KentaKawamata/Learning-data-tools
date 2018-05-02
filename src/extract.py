@@ -24,6 +24,6 @@ def extract(image_path, label_path, image_tmp, label_tmp, sheets):
 if __name__ == '__main__':
 
     #取り出す枚数
-    number = 100
+    number = 114
     paths = PATH.file_path()
     extract(paths[0], paths[1], paths[2], paths[3], number)

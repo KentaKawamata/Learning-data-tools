@@ -24,7 +24,7 @@ class COLOR(Lumine):
             self.read_image(ext)
 
             if self.src is not None:
-                self.change_color("bule", 0.9, 0.625, 0.8)
+                self.change_color("blue", 0.9, 0.625, 0.8)
                 self.change_color("green", 0.625, 0.9, 0.8)
 
             self.pbar.update(1)
