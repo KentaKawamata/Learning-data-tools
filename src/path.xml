@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <location>
-    <image_path>/home/kawamata/Ganken_datasets/2018_04_28/images/</image_path>
-    <label_path>/home/kawamata/Ganken_datasets/2018_04_28/labels/</label_path>
+    <image_path>/home/kawa/robocup_test/images/</image_path>
+    <label_path>/home/kawa/robocup_test/labels/</label_path>
     <temp_image>/home/kawamata/Ganken_datasets/2018_kenshou/images/</temp_image>
     <temp_label>/home/kawamata/Ganken_datasets/2018_kenshou/labels/</temp_label>
 </location>

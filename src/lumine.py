@@ -66,8 +66,8 @@ class Lumine():
         find = os.path.isfile(self.label_path + self.image_name + ".txt")
         
         if find is False:
-          os.remove(self.image_path + self.image_name + ".jpg")
-          print("remove " + str(self.image_name) + ".jpg")      
+          os.remove(self.image_path + self.image_name + ".png")
+          print("remove " + str(self.image_name) + ".png")      
 
         elif find is True:
           shutil.copyfile(self.label_path + self.image_name + '.txt', self.label_path + new_filename + ".txt")
