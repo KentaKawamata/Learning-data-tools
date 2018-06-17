@@ -63,7 +63,14 @@ class Lumine():
         self.add_label(new_name)
 
     def add_label(self, new_filename):
-        shutil.copyfile(self.label_path + self.image_name + '.txt', self.label_path + new_filename + ".txt")
+        find = os.path.isfile(self.label_path + self.image_name + ".txt")
+        
+        if find is False:
+          os.remove(self.image_path + self.image_name + ".jpg")
+          print("remove " + str(self.image_name) + ".jpg")      
+
+        elif find is True:
+          shutil.copyfile(self.label_path + self.image_name + '.txt', self.label_path + new_filename + ".txt")
 
     def normalization(self, hensa, avrage, signal):
         self.img = (self.src-np.mean(self.src))/np.std(self.src)*hensa+avrage
